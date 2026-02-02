@@ -58,7 +58,7 @@
     }
 
     h1 {
-      font-size: clamp(26px, 4vw, 44px);
+      font-size: clamp(22px, 3.2vw, 36px);
       margin: 12px 0 18px;
     }
 
@@ -249,6 +249,14 @@
       yesScale = Math.min(2.2, yesScale + 0.1);
       yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
     }
+    // auto grow every second
+    const growInterval = setInterval(() => {
+      if (yesScale < 2.2) {
+        growYes();
+      } else {
+        clearInterval(growInterval);
+      }
+    }, 1000);
 
     /* ---------- NO BUTTON RUNS AWAY ---------- */
     function clamp(n, min, max) {
@@ -291,6 +299,7 @@
 
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
+      clearInterval(growInterval);
       zone.style.display = "none";
       hint.style.display = "none";     // HIDE THE HINT
       result.style.display = "block";
