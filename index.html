@@ -10,8 +10,8 @@
 
   <style>
     :root {
-      --bg1: #ffd6e7;
-      --bg2: #ffeef6;
+      --bg1: #ffeef6;
+      --bg2: #ffd6e7;
       --card: #ffffffcc;
       --yes: #ff3b7a;
       --yesHover: #ff1f68;
@@ -24,7 +24,7 @@
       min-height: 100svh;
       display: grid;
       place-items: center;
-      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+      background: linear-gradient(#ffffff, #fff7fb);
       font-family: system-ui, sans-serif;
       overflow: hidden;
       padding: 16px;
@@ -94,8 +94,7 @@
     #yesBtn:hover { background: var(--yesHover); }
 
     #noBtn {
-      left: 62%;
-      background: #e5e7eb;
+      background: #d1d5db;
       color: #111827;
     }
 
@@ -117,9 +116,8 @@
     }
 
     .fireworks {
-      width: min(380px, 90vw);
-      margin: 0 auto;
-      display: block;
+      width: min(340px, 85vw);
+      border-radius: 16px;
     }
 
     @keyframes pop {
@@ -185,7 +183,7 @@
       <h2>YAYYY!! 🎉</h2>
       <img
         class="fireworks"
-        src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
+        src="https://giphy.com/gifs/WonderPals-happy-dance-funny-dvdcBNbAiNVT9Z0iwP"
         alt="Fireworks"
       />
     </section>
