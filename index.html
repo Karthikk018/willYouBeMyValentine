@@ -131,10 +131,43 @@
       from { transform: scale(.96); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
+
+    /* -------- FLOWER FALL ANIMATION -------- */
+
+    #flowers {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    
+    .flower {
+      position: absolute;
+      top: -40px;
+      font-size: 22px;
+      animation: fall linear forwards;
+      opacity: 0.9;
+    }
+    
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 1;
+      }
+    }
+    
+    /* keep card above flowers */
+    .card {
+      position: relative;
+      z-index: 1;
+    }
+
   </style>
 </head>
 
 <body>
+  <div id="flowers"></div>
   <canvas id="confettiCanvas"></canvas>
 
   <main class="card">
@@ -190,7 +223,7 @@
       <h2>YAYYY!! 🎉</h2>
       <img
         class="fireworks"
-        src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzJ6MDJ1Z2Fpa2pjYnNxbDkyY2hvNTBic2I0NmJuYmhwbnZpNzl5cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dvdcBNbAiNVT9Z0iwP/giphy.gif"
+        src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3oyaTVwZm9rdGxxNmk0eTdrODJscDVzNzBlcjFiYnQwc3g3NzgwdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W1hd3uXRIbddu/giphy.gif"
         alt="Fireworks"
       />
     </section>
@@ -301,6 +334,31 @@
     });
 
     noBtn.addEventListener("click", e => e.preventDefault());
+
+    /* ---------- FLOWERS FALLING ---------- */
+
+    const flowerLayer = document.getElementById("flowers");
+    const flowerEmojis = ["🌸","🌺","🌷","💮","🌹"];
+    
+    function spawnFlower() {
+      const f = document.createElement("div");
+      f.className = "flower";
+      f.textContent = flowerEmojis[Math.floor(Math.random()*flowerEmojis.length)];
+    
+      const size = 16 + Math.random()*18;
+      const left = Math.random()*100;
+      const duration = 6 + Math.random()*6;
+    
+      f.style.left = left + "vw";
+      f.style.fontSize = size + "px";
+      f.style.animationDuration = duration + "s";
+    
+      flowerLayer.appendChild(f);
+    
+      setTimeout(() => f.remove(), duration * 1000);
+    }
+    
+    setInterval(spawnFlower, 350);
 
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
